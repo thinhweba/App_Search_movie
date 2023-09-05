@@ -4,7 +4,7 @@ import MovieCard from "./MovieCard";
 import SearchIcon from "./search.svg";
 import "./App.css";
 import axios from "axios";
-
+import "./Movie.json";
 const API_URL = "http://www.omdbapi.com?apikey=b6003d8a";
 
 const App = () => {
@@ -25,9 +25,9 @@ const App = () => {
 
     axios({
       method: "GET",
-      url: "http://www.omdbapi.com?apikey=b6003d8a&s=Batman",
+      url: "http://localhost:3000/Search",
     }).then((res) => {
-      setMovies(res.data.Search);
+      setMovies(res.data);
     });
   };
 
