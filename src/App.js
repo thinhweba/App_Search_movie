@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import MovieCard from "./MovieCard";
 import SearchIcon from "./search.svg";
 import "./App.css";
+import axios from "axios";
 
 const API_URL = "http://www.omdbapi.com?apikey=b6003d8a";
 
@@ -11,14 +12,23 @@ const App = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    searchMovies("Batman");
+    // searchMovies("Batman");
   }, []);
 
   const searchMovies = async (title) => {
-    const response = await fetch(`${API_URL}&s=${title}`);
-    const data = await response.json();
+    // const response = await fetch(
+    //   `${"http://www.omdbapi.com?apikey=b6003d8a"}&s=${"Batman"}`
+    // );
+    // const data = await response.json();
 
-    setMovies(data.Search);
+    // setMovies(data.Search);
+
+    axios({
+      method: "GET",
+      url: "http://www.omdbapi.com?apikey=b6003d8a&s=Batman",
+    }).then((res) => {
+      setMovies(res.data.Search);
+    });
   };
 
   return (
